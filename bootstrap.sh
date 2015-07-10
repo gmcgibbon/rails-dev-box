@@ -17,6 +17,9 @@ install 'development tools' build-essential
 install 'environment tools' autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
 install Git git
+git config --global core.excludesfile $VAGRANT_HOME/.gitignore
+echo .DS_Store >> $VAGRANT_HOME/.gitignore
+
 install SQLite sqlite3 libsqlite3-dev
 install Memcached memcached
 install Redis redis-server
