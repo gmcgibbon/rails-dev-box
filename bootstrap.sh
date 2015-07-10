@@ -15,7 +15,7 @@ apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
 install 'environment tools' autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
-install 'verification tools' phantomjs
+install 'verification tools' phantomjs qt5-default libqt5webkit5-dev
 
 install Git git
 git config --global core.excludesfile $VAGRANT_HOME/.gitignore
