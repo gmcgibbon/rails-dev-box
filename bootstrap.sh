@@ -15,6 +15,7 @@ apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
 install 'environment tools' autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+install 'verification tools' phantomjs
 
 install Git git
 git config --global core.excludesfile $VAGRANT_HOME/.gitignore
@@ -43,7 +44,7 @@ GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'rails'@'localhost';
 GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION; FLUSH PRIVILEGES;
 SQL
-sudo /etc/init.d/mysql restart >/dev/null 2>&1
+service mysql restart >/dev/null 2>&1
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
@@ -57,14 +58,14 @@ git clone git://github.com/sstephenson/ruby-build.git $VAGRANT_HOME/.rbenv/plugi
 echo 'export PATH="/home/vagrant/.rbenv/plugins/ruby-build/bin:$PATH"' >> $VAGRANT_HOME/.bash_profile
 source $VAGRANT_HOME/.bash_profile
 
-sudo chown -R vagrant $VAGRANT_HOME/.rbenv
-
 echo installing Ruby
 rbenv install 2.1.2 >/dev/null 2>&1
 rbenv global 2.1.2
 
 echo installing Bundler
 gem install bundler >/dev/null 2>&1
+
+chown -R vagrant $VAGRANT_HOME/.rbenv
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
