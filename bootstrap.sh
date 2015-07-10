@@ -18,7 +18,6 @@ install 'environment tools' autoconf bison build-essential libssl-dev libyaml-de
 install 'verification tools' phantomjs qt5-default libqt5webkit5-dev
 
 install Git git
-git config --global core.excludesfile $VAGRANT_HOME/.gitignore
 echo .DS_Store >> $VAGRANT_HOME/.gitignore
 
 install SQLite sqlite3 libsqlite3-dev
@@ -66,6 +65,10 @@ echo installing Bundler
 gem install bundler >/dev/null 2>&1
 
 chown -R vagrant $VAGRANT_HOME/.rbenv
+
+echo enhancing PATH
+echo 'export ZEUSSOCK=/tmp/zeus.sock' >> $VAGRANT_HOME/.bash_profile
+echo 'git config --global core.excludesfile /home/vagrant/.gitignore' >> $VAGRANT_HOME/.bash_profile
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
