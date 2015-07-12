@@ -2,6 +2,7 @@
 # the progress report is nice and concise.
 
 export VAGRANT_HOME="/home/vagrant"
+export VAGRANT_PATH="/home/vagrant/.zshrc"
 export RBENV_ROOT="/home/vagrant/.rbenv"
 
 function install {
@@ -48,27 +49,32 @@ service mysql restart >/dev/null 2>&1
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'ExecJS runtime' nodejs
 
+install ZShell zsh
+git clone git://github.com/robbyrussell/oh-my-zsh.git $VAGRANT_HOME/.oh-my-zsh >/dev/null 2>&1
+cp $VAGRANT_HOME/.oh-my-zsh/templates/zshrc.zsh-template $VAGRANT_PATH
+chsh -s /bin/zsh vagrant
+
 echo installing Rbenv
 git clone git://github.com/sstephenson/rbenv.git $VAGRANT_HOME/.rbenv >/dev/null 2>&1
-echo 'export PATH="/home/vagrant/.rbenv/bin:$PATH"' >> $VAGRANT_HOME/.bash_profile
-echo 'eval "$(rbenv init -)"' >> $VAGRANT_HOME/.bash_profile
+echo 'export PATH="/home/vagrant/.rbenv/bin:$PATH"' >> $VAGRANT_PATH
+echo 'eval "$(rbenv init -)"' >> $VAGRANT_PATH
 
 git clone git://github.com/sstephenson/ruby-build.git $VAGRANT_HOME/.rbenv/plugins/ruby-build >/dev/null 2>&1
-echo 'export PATH="/home/vagrant/.rbenv/plugins/ruby-build/bin:$PATH"' >> $VAGRANT_HOME/.bash_profile
-source $VAGRANT_HOME/.bash_profile
+echo 'export PATH="/home/vagrant/.rbenv/plugins/ruby-build/bin:$PATH"' >> $VAGRANT_PATH
+source $VAGRANT_PATH >/dev/null 2>&1
 
-echo installing Ruby
+echo installing Rubies
 rbenv install 2.1.2 >/dev/null 2>&1
 rbenv global 2.1.2
 
 echo installing Bundler
 gem install bundler >/dev/null 2>&1
 
-chown -R vagrant $VAGRANT_HOME/.rbenv
+chown -R vagrant $VAGRANT_HOME
 
 echo enhancing PATH
-echo 'export ZEUSSOCK=/tmp/zeus.sock' >> $VAGRANT_HOME/.bash_profile
-echo 'git config --global core.excludesfile /home/vagrant/.gitignore' >> $VAGRANT_HOME/.bash_profile
+echo 'export ZEUSSOCK=/tmp/zeus.sock' >> $VAGRANT_PATH
+echo 'git config --global core.excludesfile /home/vagrant/.gitignore' >> $VAGRANT_PATH
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
