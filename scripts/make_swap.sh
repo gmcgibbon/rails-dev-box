@@ -1,4 +1,4 @@
-#!/bin/sh
+# Creates a swapfile for rails asset compilation
 
 # size of swapfile in megabytes
 SWAP_SIZE=1024

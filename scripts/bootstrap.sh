@@ -74,7 +74,6 @@ chown -R vagrant $VAGRANT_HOME
 
 echo enhancing PATH
 echo 'export ZEUSSOCK=/tmp/zeus.sock' >> $VAGRANT_PATH
-echo 'git config --global core.excludesfile /home/vagrant/.gitignore' >> $VAGRANT_PATH
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
