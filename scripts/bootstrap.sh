@@ -12,6 +12,7 @@ function install {
 }
 
 echo updating package information
+add-apt-repository ppa:git-core/ppa >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
