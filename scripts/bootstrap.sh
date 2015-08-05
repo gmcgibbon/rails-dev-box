@@ -16,7 +16,7 @@ add-apt-repository ppa:git-core/ppa >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
-install 'environment tools' autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+install 'environment tools' autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev imagemagick
 install 'verification tools' phantomjs qt5-default libqt5webkit5-dev
 
 install Git git
@@ -66,6 +66,7 @@ source $VAGRANT_PATH >/dev/null 2>&1
 
 echo installing Rubies
 rbenv install 2.1.2 >/dev/null 2>&1
+rbenv install 2.2.2 >/dev/null 2>&1
 rbenv global 2.1.2
 
 echo installing Bundler
