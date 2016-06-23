@@ -12,7 +12,9 @@ Vagrant.configure('2') do |config|
     v.cpus = 2
   end
 
-  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 3000, host: 1300
+  config.vm.network :forwarded_port, guest: 5432, host: 15432
+  config.vm.network :forwarded_port, guest: 3306, host: 13306
 
   config.vm.provision :shell, path: 'scripts/make_swap.sh',  keep_color: true
   config.vm.provision :shell, path: 'scripts/bootstrap.sh',  keep_color: true
